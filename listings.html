@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Food Listings - FoodShare</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="FoodShare Logo">
+                <h1>FoodShare</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="post.html">Post Food</a></li>
+                    <li><a href="listings.html" class="active">View Listings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="listings-section">
+            <div class="container">
+                <h2>Available Food Listings</h2>
+                <p>Browse current food donations and contact the providers directly to arrange pickup.</p>
+                
+                <div class="filter-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search listings...">
+                    </div>
+                    <select id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="expiry">Expiring Soon</option>
+                        <option value="quantity">Largest Quantity</option>
+                    </select>
+                </div>
+                
+                <div id="listingsContainer" class="listings-container">
+                    <!-- Listings will be dynamically inserted here by JavaScript -->
+                    <div class="no-listings-message">
+                        <p>No food listings available at the moment. Check back later or <a href="post.html">post some food</a> yourself!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/listings.js"></script>
+</body>
+</html>

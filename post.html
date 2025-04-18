@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Food - FoodShare</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="FoodShare Logo">
+                <h1>FoodShare</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="post.html" class="active">Post Food</a></li>
+                    <li><a href="listings.html">View Listings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="post-section">
+            <div class="container">
+                <h2>Post Leftover Food</h2>
+                <p>Fill out the form below to share information about available food.</p>
+                
+                <form id="foodPostForm">
+                    <div class="form-group">
+                        <label for="name">Your Name or Organization:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">Contact (Phone or Email):</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Pickup Location:</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="foodDescription">Food Description:</label>
+                        <textarea id="foodDescription" name="foodDescription" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="quantity">Approximate Quantity (servings):</label>
+                            <input type="number" id="quantity" name="quantity" min="1" required>
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="expiryTime">Available Until:</label>
+                            <input type="datetime-local" id="expiryTime" name="expiryTime" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit Food Post</button>
+                    </div>
+                </form>
+                
+                <div id="confirmationMessage" class="confirmation hidden">
+                    <h3>Thank you for your submission!</h3>
+                    <p>Your food post has been added to our listings. You can <a href="listings.html">view all listings here</a>.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/post.js"></script>
+</body>
+</html>
