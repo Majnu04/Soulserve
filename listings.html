@@ -3,60 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse available food donations and help reduce waste in your community">
+    <meta name="keywords" content="food listings, donations, browse food, reduce waste">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#4caf50">
+    <link rel="manifest" href="manifest.json">
+    
     <title>Available Food Listings - FoodShare</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
         <div class="container">
             <div class="logo">
-                <img src="assets/logo.png" alt="FoodShare Logo">
+                <img src="assets/logo.png" alt="FoodShare Logo - A green leaf symbol representing sustainability">
                 <h1>FoodShare</h1>
             </div>
-            <nav>
-                <ul>
+            <nav role="navigation" aria-label="Main navigation">
+                <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger"></span>
+                    <span class="sr-only">Toggle navigation menu</span>
+                </button>
+                <ul id="main-nav" class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="post.html">Post Food</a></li>
-                    <li><a href="listings.html" class="active">View Listings</a></li>
+                    <li><a href="listings.html" class="active" aria-current="page">View Listings</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="listings-section">
+    <main id="main-content" role="main">
+        <section class="listings-section" aria-labelledby="listings-title">
             <div class="container">
-                <h2>Available Food Listings</h2>
-                <p>Browse current food donations and contact the providers directly to arrange pickup.</p>
+                <h2 id="listings-title">Available Food Listings</h2>
+                <p class="section-subtitle">Browse current food donations and contact the providers directly to arrange pickup. Help reduce waste while helping your community!</p>
                 
-                <div class="filter-controls">
-                    <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="Search listings...">
+                <!-- Quick Stats -->
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="activeListings">0</span>
+                        <span class="stat-label">Active Listings</span>
                     </div>
-                    <select id="sortSelect">
-                        <option value="newest">Newest First</option>
-                        <option value="expiry">Expiring Soon</option>
-                        <option value="quantity">Largest Quantity</option>
-                    </select>
+                    <div class="stat-item">
+                        <span class="stat-number" id="availableServings">0</span>
+                        <span class="stat-label">Servings Available</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="expiringToday">0</span>
+                        <span class="stat-label">Expiring Today</span>
+                    </div>
                 </div>
                 
-                <div id="listingsContainer" class="listings-container">
+                <div class="filter-controls">
+                    <div class="search-filter-group">
+                        <div class="search-box">
+                            <input type="text" id="searchInput" placeholder="Search by food type, location, or description..." aria-label="Search listings">
+                            <button type="button" class="search-clear" id="clearSearch" aria-label="Clear search" style="display: none;">×</button>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <select id="categoryFilter" aria-label="Filter by food category">
+                                <option value="">All Categories</option>
+                                <option value="prepared">Prepared/Cooked Food</option>
+                                <option value="fresh">Fresh Produce</option>
+                                <option value="packaged">Packaged Foods</option>
+                                <option value="baked">Baked Goods</option>
+                                <option value="dairy">Dairy Products</option>
+                                <option value="other">Other</option>
+                            </select>
+                            
+                            <select id="sortSelect" aria-label="Sort listings">
+                                <option value="newest">Newest First</option>
+                                <option value="expiry">Expiring Soon</option>
+                                <option value="quantity">Largest Quantity</option>
+                                <option value="distance">Nearest Location</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="view-controls">
+                        <button type="button" class="btn btn-small" id="refreshBtn" aria-label="Refresh listings">
+                            🔄 Refresh
+                        </button>
+                        <div class="view-toggle">
+                            <button type="button" class="view-btn active" data-view="grid" aria-label="Grid view">⊞</button>
+                            <button type="button" class="view-btn" data-view="list" aria-label="List view">☰</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="listings-summary" id="listingsSummary">
+                    <p>Loading listings...</p>
+                </div>
+                
+                <div id="listingsContainer" class="listings-container grid-view">
                     <!-- Listings will be dynamically inserted here by JavaScript -->
                     <div class="no-listings-message">
-                        <p>No food listings available at the moment. Check back later or <a href="post.html">post some food</a> yourself!</p>
+                        <div class="empty-state">
+                            <div class="empty-icon">🍽️</div>
+                            <h3>No food listings available</h3>
+                            <p>Be the first to share surplus food with your community!</p>
+                            <a href="post.html" class="btn btn-primary">Post Food Now</a>
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container" style="display: none;">
+                    <button type="button" class="btn btn-secondary" id="loadMoreBtn">Load More Listings</button>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FoodShare</h3>
+                    <p>Connecting communities to reduce food waste and fight hunger.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Instagram"><span>📷</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="post.html">Post Food</a></li>
+                        <li><a href="listings.html">Browse Listings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 hello@foodshare.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                    <p>📍 Everywhere, helping communities</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste by Gouri Shanker.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#accessibility">Accessibility</a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Toast notifications -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Loading indicator -->
+    <div id="loading-indicator" class="loading-indicator hidden">
+        <div class="spinner"></div>
+        <p>Loading listings...</p>
+    </div>
+
     <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
     <script src="js/listings.js"></script>
 </body>
 </html>
