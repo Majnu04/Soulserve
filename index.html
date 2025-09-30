@@ -3,19 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reduce food waste by connecting surplus food with those in need. Join FoodShare community today.">
+    <meta name="keywords" content="food waste, donation, community, sustainability, food sharing">
+    <meta name="author" content="Gouri Shanker">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://foodshare.local/">
+    <meta property="og:title" content="FoodShare - Reduce Food Waste">
+    <meta property="og:description" content="Connect excess food with people and organizations who need it most.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="FoodShare - Reduce Food Waste">
+    <meta property="twitter:description" content="Connect excess food with people and organizations who need it most.">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#4caf50">
+    <link rel="manifest" href="manifest.json">
+    
     <title>FoodShare - Reduce Food Waste</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
         <div class="container">
             <div class="logo">
-                <img src="assets/logo.png" alt="FoodShare Logo">
+                <img src="assets/logo.png" alt="FoodShare Logo - A green leaf symbol representing sustainability">
                 <h1>FoodShare</h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
+            <nav role="navigation" aria-label="Main navigation">
+                <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger"></span>
+                    <span class="sr-only">Toggle navigation menu</span>
+                </button>
+                <ul id="main-nav" class="nav-menu">
+                    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
                     <li><a href="post.html">Post Food</a></li>
                     <li><a href="listings.html">View Listings</a></li>
                 </ul>
@@ -23,64 +52,176 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <main id="main-content" role="main">
+        <section class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h2>Reduce Food Waste, Help Your Community</h2>
-                <p>Connect excess food with people and organizations who need it most.</p>
+                <h2 id="hero-title">Reduce Food Waste, Help Your Community</h2>
+                <p class="hero-subtitle">Connect excess food with people and organizations who need it most.</p>
                 <div class="cta-buttons">
-                    <a href="post.html" class="btn btn-primary">Post Food</a>
-                    <a href="listings.html" class="btn btn-secondary">View Listings</a>
+                    <a href="post.html" class="btn btn-primary" aria-describedby="post-desc">
+                        <span class="btn-icon">📤</span>
+                        Post Food
+                    </a>
+                    <a href="listings.html" class="btn btn-secondary" aria-describedby="browse-desc">
+                        <span class="btn-icon">🔍</span>
+                        View Listings
+                    </a>
+                </div>
+                <div class="hero-descriptions">
+                    <p id="post-desc" class="sr-only">Share your surplus food with the community</p>
+                    <p id="browse-desc" class="sr-only">Find available food donations near you</p>
                 </div>
             </div>
         </section>
 
-        <section class="features">
+        <section class="features" aria-labelledby="features-title">
             <div class="container">
-                <div class="feature-box">
-                    <h3>For Donors</h3>
-                    <p>Restaurants, event organizers, and individuals can easily post information about leftover food.</p>
-                    <a href="post.html" class="btn btn-small">Post Now</a>
-                </div>
-                <div class="feature-box">
-                    <h3>For Recipients</h3>
-                    <p>NGOs and volunteers can browse available food donations and contact donors directly.</p>
-                    <a href="listings.html" class="btn btn-small">Browse Listings</a>
-                </div>
-                <div class="feature-box">
-                    <h3>How It Works</h3>
-                    <p>Simple process: post food details, connect with recipients, arrange pickup, reduce waste!</p>
+                <h2 id="features-title" class="section-title">How FoodShare Works</h2>
+                <div class="features-grid">
+                    <article class="feature-box" role="article">
+                        <div class="feature-icon" aria-hidden="true">🍽️</div>
+                        <h3>For Donors</h3>
+                        <p>Restaurants, event organizers, and individuals can easily post information about leftover food. Every donation counts!</p>
+                        <ul class="feature-benefits">
+                            <li>Quick 2-minute posting process</li>
+                            <li>Direct contact with recipients</li>
+                            <li>Track your impact</li>
+                        </ul>
+                        <a href="post.html" class="btn btn-small">Post Now</a>
+                    </article>
+                    <article class="feature-box" role="article">
+                        <div class="feature-icon" aria-hidden="true">🤝</div>
+                        <h3>For Recipients</h3>
+                        <p>NGOs and volunteers can browse available food donations and contact donors directly. Help fight food insecurity!</p>
+                        <ul class="feature-benefits">
+                            <li>Real-time listings</li>
+                            <li>Advanced search filters</li>
+                            <li>Instant notifications</li>
+                        </ul>
+                        <a href="listings.html" class="btn btn-small">Browse Listings</a>
+                    </article>
+                    <article class="feature-box" role="article">
+                        <div class="feature-icon" aria-hidden="true">♻️</div>
+                        <h3>Environmental Impact</h3>
+                        <p>Join our mission to reduce food waste and environmental impact. Every meal saved makes a difference!</p>
+                        <ul class="feature-benefits">
+                            <li>Reduce CO₂ emissions</li>
+                            <li>Save water resources</li>
+                            <li>Build sustainable communities</li>
+                        </ul>
+                        <div class="environmental-fact">
+                            <small>💡 Did you know? Food waste accounts for 8-10% of global greenhouse gas emissions</small>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section class="impact">
+        <section class="impact" aria-labelledby="impact-title">
             <div class="container">
-                <h2>Our Impact</h2>
-                <div class="stats">
-                    <div class="stat">
-                        <span class="number">0</span>
+                <h2 id="impact-title">Our Community Impact</h2>
+                <p class="impact-subtitle">Together, we're making a real difference</p>
+                <div class="stats" role="region" aria-label="Impact statistics">
+                    <div class="stat" role="figure">
+                        <span class="number" data-count="0" aria-live="polite">0</span>
                         <span class="label">Food Posts</span>
+                        <span class="stat-description">Active donations</span>
                     </div>
-                    <div class="stat">
-                        <span class="number">0</span>
+                    <div class="stat" role="figure">
+                        <span class="number" data-count="0" aria-live="polite">0</span>
                         <span class="label">Meals Saved</span>
+                        <span class="stat-description">From going to waste</span>
                     </div>
-                    <div class="stat">
-                        <span class="number">0</span>
+                    <div class="stat" role="figure">
+                        <span class="number" data-count="0" aria-live="polite">0</span>
                         <span class="label">CO₂ Saved (kg)</span>
+                        <span class="stat-description">Environmental benefit</span>
+                    </div>
+                    <div class="stat" role="figure">
+                        <span class="number" data-count="0" aria-live="polite">0</span>
+                        <span class="label">Active Users</span>
+                        <span class="stat-description">Community members</span>
                     </div>
                 </div>
+                <div class="impact-visualization">
+                    <div class="progress-ring">
+                        <svg width="120" height="120">
+                            <circle class="progress-ring-circle" stroke="rgba(255,255,255,0.3)" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                            <circle class="progress-ring-progress" stroke="#ffffff" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
+                        </svg>
+                        <div class="progress-text">
+                            <span class="progress-number">0%</span>
+                            <span class="progress-label">Goal Progress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Newsletter Signup Section -->
+        <section class="newsletter" aria-labelledby="newsletter-title">
+            <div class="container">
+                <h2 id="newsletter-title">Stay Updated</h2>
+                <p>Get notified about new food donations in your area</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group-inline">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
+                        <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </div>
+                    <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
+                </form>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste By Gouri Shanker.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FoodShare</h3>
+                    <p>Connecting communities to reduce food waste and fight hunger.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Instagram"><span>📷</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="post.html">Post Food</a></li>
+                        <li><a href="listings.html">Browse Listings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 hello@foodshare.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                    <p>📍 Everywhere, helping communities</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste by Gouri Shanker.</p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#accessibility">Accessibility</a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- Toast notifications -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Loading indicator -->
+    <div id="loading-indicator" class="loading-indicator hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
     <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
 </body>
 </html>

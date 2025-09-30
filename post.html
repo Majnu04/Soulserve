@@ -3,85 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Post your surplus food to help reduce waste and feed those in need">
+    <meta name="keywords" content="post food, food donation, reduce waste, share food">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#4caf50">
+    <link rel="manifest" href="manifest.json">
+    
     <title>Post Food - FoodShare</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
         <div class="container">
             <div class="logo">
-                <img src="assets/logo.png" alt="FoodShare Logo">
+                <img src="assets/logo.png" alt="FoodShare Logo - A green leaf symbol representing sustainability">
                 <h1>FoodShare</h1>
             </div>
-            <nav>
-                <ul>
+            <nav role="navigation" aria-label="Main navigation">
+                <button class="mobile-menu-toggle" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger"></span>
+                    <span class="sr-only">Toggle navigation menu</span>
+                </button>
+                <ul id="main-nav" class="nav-menu">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="post.html" class="active">Post Food</a></li>
+                    <li><a href="post.html" class="active" aria-current="page">Post Food</a></li>
                     <li><a href="listings.html">View Listings</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="post-section">
+    <main id="main-content" role="main">
+        <section class="post-section" aria-labelledby="form-title">
             <div class="container">
-                <h2>Post Leftover Food</h2>
-                <p>Fill out the form below to share information about available food.</p>
+                <h2 id="form-title">Post Leftover Food</h2>
+                <p class="section-subtitle">Fill out the form below to share information about available food and help reduce waste in your community.</p>
                 
-                <form id="foodPostForm">
-                    <div class="form-group">
-                        <label for="name">Your Name or Organization:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact">Contact (Phone or Email):</label>
-                        <input type="text" id="contact" name="contact" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="location">Pickup Location:</label>
-                        <input type="text" id="location" name="location" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="foodDescription">Food Description:</label>
-                        <textarea id="foodDescription" name="foodDescription" rows="4" required></textarea>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group half">
-                            <label for="quantity">Approximate Quantity (servings):</label>
-                            <input type="number" id="quantity" name="quantity" min="1" required>
+                <!-- Progress indicator -->
+                <div class="form-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar"></div>
+                    <span class="progress-text">Step 1 of 3</span>
+                </div>
+                
+                <form id="foodPostForm" novalidate>
+                    <fieldset class="form-step active" data-step="1">
+                        <legend class="form-step-title">Contact Information</legend>
+                        
+                        <div class="form-group">
+                            <label for="name">Your Name or Organization</label>
+                            <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-help">
+                            <div class="form-help" id="name-help">This will be shown to people interested in your food donation</div>
+                            <div class="form-error"></div>
                         </div>
                         
-                        <div class="form-group half">
-                            <label for="expiryTime">Available Until:</label>
-                            <input type="datetime-local" id="expiryTime" name="expiryTime" required>
+                        <div class="form-group">
+                            <label for="contact">Contact Information</label>
+                            <input type="text" id="contact" name="contact" required autocomplete="tel email" aria-describedby="contact-help" placeholder="Phone number or email address">
+                            <div class="form-help" id="contact-help">Provide either a phone number or email address for people to reach you</div>
+                            <div class="form-error"></div>
                         </div>
-                    </div>
+                        
+                        <div class="form-group">
+                            <label for="location">Pickup Location</label>
+                            <input type="text" id="location" name="location" required autocomplete="address-line1" aria-describedby="location-help" placeholder="Street address, landmark, or general area">
+                            <div class="form-help" id="location-help">Be specific enough for people to find you, but protect your privacy</div>
+                            <div class="form-error"></div>
+                        </div>
+                    </fieldset>
                     
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit Food Post</button>
+                    <fieldset class="form-step" data-step="2">
+                        <legend class="form-step-title">Food Details</legend>
+                        
+                        <div class="form-group">
+                            <label for="foodDescription">Food Description</label>
+                            <textarea id="foodDescription" name="foodDescription" rows="4" required aria-describedby="food-help" placeholder="Describe the type of food, any dietary information, storage requirements, etc."></textarea>
+                            <div class="form-help" id="food-help">Include details like vegetarian/vegan, allergen information, and any special storage needs</div>
+                            <div class="form-error"></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="quantity">Approximate Quantity</label>
+                                <select id="quantityType" name="quantityType" aria-describedby="quantity-help">
+                                    <option value="servings">Servings</option>
+                                    <option value="people">People</option>
+                                    <option value="kg">Kilograms</option>
+                                    <option value="items">Items</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="quantity" class="sr-only">Quantity amount</label>
+                                <input type="number" id="quantity" name="quantity" min="1" max="1000" required aria-describedby="quantity-help" placeholder="Amount">
+                                <div class="form-help" id="quantity-help">How much food is available?</div>
+                                <div class="form-error"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="foodType">Food Category</label>
+                            <select id="foodType" name="foodType" required aria-describedby="type-help">
+                                <option value="">Select category</option>
+                                <option value="prepared">Prepared/Cooked Food</option>
+                                <option value="fresh">Fresh Produce</option>
+                                <option value="packaged">Packaged Foods</option>
+                                <option value="baked">Baked Goods</option>
+                                <option value="dairy">Dairy Products</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="form-help" id="type-help">This helps people find the right type of food</div>
+                            <div class="form-error"></div>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset class="form-step" data-step="3">
+                        <legend class="form-step-title">Availability & Preferences</legend>
+                        
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="availableFrom">Available From</label>
+                                <input type="datetime-local" id="availableFrom" name="availableFrom" required aria-describedby="available-help">
+                                <div class="form-error"></div>
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="expiryTime">Available Until</label>
+                                <input type="datetime-local" id="expiryTime" name="expiryTime" required aria-describedby="expiry-help">
+                                <div class="form-help" id="available-help expiry-help">When can people pick up this food?</div>
+                                <div class="form-error"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialInstructions">Special Instructions (Optional)</label>
+                            <textarea id="specialInstructions" name="specialInstructions" rows="3" aria-describedby="instructions-help" placeholder="Any special pickup instructions, preparation notes, or other important information"></textarea>
+                            <div class="form-help" id="instructions-help">Include pickup instructions, preparation details, or other helpful information</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="allowNotifications" name="allowNotifications" checked>
+                                <span class="checkmark"></span>
+                                Allow notifications about this food posting
+                            </label>
+                            <div class="form-help">We'll notify you when someone is interested in your food donation</div>
+                        </div>
+                    </fieldset>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">
+                            <span class="btn-icon">📤</span>
+                            Submit Food Post
+                        </button>
                     </div>
                 </form>
                 
                 <div id="confirmationMessage" class="confirmation hidden">
-                    <h3>Thank you for your submission!</h3>
-                    <p>Your food post has been added to our listings. You can <a href="listings.html">view all listings here</a>.</p>
+                    <h3>🎉 Thank you for your submission!</h3>
+                    <p>Your food post has been added to our listings. You can <a href="listings.html">view all listings here</a> or <a href="index.html">return to the homepage</a>.</p>
+                    <div class="confirmation-actions">
+                        <a href="post.html" class="btn btn-secondary">Post Another</a>
+                        <a href="listings.html" class="btn btn-primary">View Listings</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FoodShare</h3>
+                    <p>Connecting communities to reduce food waste and fight hunger.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="post.html">Post Food</a></li>
+                        <li><a href="listings.html">Browse Listings</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodShare Platform. A demo project for reducing food waste by Gouri Shanker.</p>
+            </div>
         </div>
     </footer>
 
+    <!-- Toast notifications -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Loading indicator -->
+    <div id="loading-indicator" class="loading-indicator hidden">
+        <div class="spinner"></div>
+        <p>Submitting your food post...</p>
+    </div>
+
     <script src="js/main.js"></script>
+    <script src="js/notifications.js"></script>
     <script src="js/post.js"></script>
 </body>
 </html>
